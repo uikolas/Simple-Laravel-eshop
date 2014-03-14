@@ -1,7 +1,7 @@
-<?php echo $header; ?>
+<?php echo View::make('header'); ?>
 
 <div class="row">
-	<?php echo $side; ?>
+	<?php echo View::make('side'); ?>
 	<div class="col-md-9">
 
 				<div class="panel panel-default">
@@ -30,4 +30,4 @@
 	</div>
 </div>
 
-<?php echo $footer; ?>
+<?php echo View::make('footer'); ?>

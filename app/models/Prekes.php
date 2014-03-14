@@ -9,5 +9,4 @@ class Prekes extends Eloquent {
 		return $this->belongsTo('Kategorijos');
 	}
 	
-
 }

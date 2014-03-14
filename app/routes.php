@@ -15,6 +15,8 @@ Route::get('/', 'PrekesController@getIndex');
 Route::get('preke/{slug}', 'PrekesController@getPreke');
 Route::get('kategorija/{slug}', 'PrekesController@getPrekesKategorija');
 Route::get('krepselis', 'KrepselisController@getIndex');
+Route::get('uzsakymas', 'KrepselisController@getUzsakymas');
+Route::post('uzsakymas', 'KrepselisController@postUzsakymas');
 Route::get('kontaktai', 'BaseController@getKontaktai');
 Route::get('prideti/{id}', 'KrepselisController@getPridetiPreke');
 Route::get('ismesti/{id}', 'KrepselisController@getIsmestiPreke');

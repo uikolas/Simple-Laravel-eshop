@@ -8,21 +8,24 @@ class PrekesController extends BaseController {
 
 	// Grazina visas prekes su puslapiavimu
 	public function getIndex(){
-		$this->data['prekes'] = Prekes::paginate(15);
+		$this->data['prekes'] = Prekes::orderBy('id', 'DESC')->paginate(9);
+		View::Share('title', 'Prekės');
 		return View::make('puslapiai.pagrindinis', $this->data);
 	}
 	
 	// Grazina viena preke
 	public function getPreke($slug){
 		$this->data['preke'] = Prekes::where('slug', '=', $slug)->firstOrFail();
+		View::Share('title', $this->data['preke']['pavadinimas']);
 		return View::make('puslapiai.preke', $this->data);
 	}
 	
 	// Grazina prekes pagal kategorija
 	public function getPrekesKategorija($slug){
-		$cat = Kategorijos::where('slug', '=', $slug)->firstOrFail();
-		$this->data['prekes'] = Prekes::where('kategorija_id', '=', $cat->id)->paginate(15);
+		$kat = Kategorijos::where('slug', '=', $slug)->firstOrFail();
+		$this->data['prekes'] = Prekes::where('kategorija_id', '=', $kat->id)->orderBy('id', 'DESC')->paginate(9);
+		View::Share('title', $kat->pavadinimas);
 		return View::make('puslapiai.pagrindinis', $this->data);
-	}
-	
+	}	
+
 }

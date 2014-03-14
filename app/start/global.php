@@ -49,6 +49,7 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+	return Response::view('puslapiai.404');
 });
 
 /*
@@ -81,8 +82,13 @@ App::down(function()
 require app_path().'/filters.php';
 
 //
-App::missing(function($exception){
-	return Response::view('404', array(), 404);
+/*App::missing(function($exception){
+	return Response::view('puslapiai.404', array(), 404);
 });
+
+App::error(function(ModelNotFoundException $exception){
+	echo"labas";
+	//return Response::view('puslapiai.404', array(), 404);
+});*/
 
 

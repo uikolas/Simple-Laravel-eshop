@@ -6,17 +6,15 @@
 						<div class="panel panel-default">
 							<div class="panel-body center-text">
 								<div class="krepselis">
-									<?php //print_r($krepselis[0]); ?>
-									<?php if(isset($krepselis[0])){?>
-									Prekės: <strong><?php echo $krepselis_kiekis; ?></strong> uz <strong><?php echo $krepselis_suma; ?> lt</strong>
-									<?php } else {?>
+									<?php if($krepselis['kiekis'] != 0){ ?>
+									Prekės: <strong><?php echo $krepselis['kiekis']; ?></strong> už <strong><?php echo $krepselis['suma']; ?> lt</strong>
+									<?php } else { ?>
 									Tuščias
 									<?php } ?>
 								</div>
 								<hr />
 								<a href="<?php echo url(); ?>/krepselis">Užsakyti</a>
 							</div>
-							<?php //echo($prekes_krepselyje);?>
 						</div>						
 					</div>				
 					<div class="side">

@@ -1,5 +1,17 @@
 body {
+	background:#ecf0f1;
+}
 
+.navbar {
+	background:#34495e;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ecf0f1;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #ecf0f1;
 }
 
 .cart {
@@ -7,11 +19,11 @@ body {
 }
 
 .side {
-	width:250px;
+	width:100%;
 }
 
 .caption {
-	height:80px;
+	height:90px;
 }
 
 .pav {

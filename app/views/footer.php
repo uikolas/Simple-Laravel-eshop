@@ -5,7 +5,7 @@
 
 		<div class="row">
 			<div class="center-text">
-				<p>&copy; copyright Pavadinimas</p>
+				<p>&copy; <?php echo date('Y') ?> Laravel eshop All Rights Reserved</p>
 			</div>
 		</div>
 

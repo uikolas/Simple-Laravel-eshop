@@ -1,7 +1,7 @@
-<?php echo $header; ?>
+<?php echo View::make('header'); ?>
 
 <div class="row">
-	<?php echo $side; ?>
+	<?php echo View::make('side'); ?>
 	<div class="col-md-9">
 		<div class="row">
 			<?php foreach($prekes as $preke){ ?>
@@ -15,7 +15,7 @@
 					<div class="info clearfix">
 						<div class="pull-left cat"><a href="<?php echo url(); ?>/kategorija/<?php echo $preke->kategorija->slug; ?>"><?php echo $preke->kategorija->pavadinimas; ?></a></div>
 						<div class="pull-right cart">
-							<?php if(in_array($preke->id, $prekes_krepselyje)){ ?>
+							<?php if(in_array($preke->id, $krepselis['prekes'])){ ?>
 							<span class="label label-default">Pridėta</span>
 							<?php } else { ?>
 							<span class="label label-primary cursor prideti" data-preke="<?php echo $preke->id; ?>">Pridėti į krepšelį</span>
@@ -26,9 +26,11 @@
 				<div class="clear"></div>
 			</div>	
 			<?php } ?>
-			<?php echo $prekes->links(); ?>
+		</div>
+		<div class="center-text">
+		<?php echo $prekes->links(); ?>
 		</div>
 	</div>
 </div>
 
-<?php echo $footer; ?>
+<?php echo View::make('footer'); ?>

@@ -6,7 +6,7 @@ class Kategorijos extends Eloquent {
 	public $timestamps = false;
 
 	public function prekes(){
-		return $this->hasMany('prekes', 'kategorija_id');
+		return $this->hasMany('Prekes', 'kategorija_id');
 	}
 
 }

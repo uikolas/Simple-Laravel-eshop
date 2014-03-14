@@ -1,7 +1,7 @@
-<?php echo $header; ?>
+<?php echo View::make('header'); ?>
 
 <div class="row">
-	<?php echo $side; ?>
+	<?php echo View::make('side'); ?>
 	<div class="col-md-9">
 
 				<div class="panel panel-default">
@@ -14,7 +14,7 @@
 						<div><h3>Kaina: <?php echo $preke->kaina; ?> lt</h3></div>
 						<div>
 							<h3>
-								<?php if(in_array($preke->id, $prekes_krepselyje)){ ?>
+								<?php if(in_array($preke->id, $krepselis['prekes'])){ ?>
 								<span class="label label-default">Pridėta</span>
 								<?php } else { ?>
 								<span class="label label-primary cursor prideti" data-preke="<?php echo $preke->id; ?>">Pridėti į krepšelį</span>
@@ -27,7 +27,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Aprasymas</h3>
+						<h3 class="panel-title">Aprašymas</h3>
 					</div>
 					<div class="panel-body">
 						<?php echo $preke->aprasymas; ?>
@@ -37,4 +37,4 @@
 	</div>
 </div>
 
-<?php echo $footer; ?>
+<?php echo View::make('footer'); ?>
