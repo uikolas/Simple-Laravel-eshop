@@ -1,12 +1,11 @@
 <?php echo View::make('header'); ?>
-
 <div class="row">
 	<?php echo View::make('side'); ?>
 	<div class="col-md-9">
 		<div class="row">
 			<?php foreach($prekes as $preke){ ?>
 			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail clearfix">
+				<div class="thumbnail clearfix prekes">
 					<img src="<?php echo $preke->foto; ?>" alt="">
 					<div class="caption">
 						<div class="pull-left pav"><h4><a href="<?php echo url(); ?>/preke/<?php echo $preke->slug; ?>"><?php echo $preke->pavadinimas; ?></a></h4></div>
@@ -32,5 +31,4 @@
 		</div>
 	</div>
 </div>
-
 <?php echo View::make('footer'); ?>

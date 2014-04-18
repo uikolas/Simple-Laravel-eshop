@@ -1,9 +1,7 @@
 <?php echo View::make('header'); ?>
-
 <div class="row">
 	<?php echo View::make('side'); ?>
 	<div class="col-md-9">
-
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Kontaktai</h3>
@@ -26,8 +24,6 @@
 						</form>
 					</div>
 				</div>
-
 	</div>
 </div>
-
 <?php echo View::make('footer'); ?>

@@ -17,6 +17,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
+	app_path().'/libs',
 
 ));
 
@@ -49,7 +50,6 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
-	return Response::view('puslapiai.404');
 });
 
 /*
@@ -82,13 +82,17 @@ App::down(function()
 require app_path().'/filters.php';
 
 //
-/*App::missing(function($exception){
+App::missing(function($exception){
 	return Response::view('puslapiai.404', array(), 404);
 });
-
+/*
 App::error(function(ModelNotFoundException $exception){
 	echo"labas";
 	//return Response::view('puslapiai.404', array(), 404);
 });*/
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+App::error(function(ModelNotFoundException $exception){
+    return Response::view('puslapiai.404');
+});
 

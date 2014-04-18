@@ -7,8 +7,7 @@ class BaseController extends Controller {
 	public function __construct(){
 		$this->beforeFilter('csrf', array('on' => array('post', 'delete', 'put')));
 		$this->beforeFilter('ajax', array('on' => array('post', 'delete', 'put')));	
-		Session::put('user_id', md5($_SERVER['REMOTE_ADDR']));
-		View::Share('krepselis', Krepselis::krepselioInfo(Session::get('user_id')));
+		View::Share('krepselis', Krepselis::krepselioInfo(Session::get('cart')));
 		View::Share('kategorijos', Kategorijos::all());
 		View::Share('title', '');
 	}

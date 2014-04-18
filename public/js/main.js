@@ -8,7 +8,7 @@ $(function(){
 		var id = $(this).data('preke');
 		$.getJSON(address + "/prideti/" + id, function(data) {
 			if(data.response == 1){
-				$('.krepselis').fadeIn().html('Prekės: <strong>' + data.kiekis + '</strong> už <strong>' + data.suma + ' lt</strong>');			
+				$('.krepselis').fadeIn().html('Prekės: <strong>' + data.kiekis + '</strong> už <strong>' + data.suma + '</strong> lt');			
 			}
 		});
 		$(this).removeClass('cursor').removeClass('prideti').removeClass('label-primary').addClass('label-default').text('Pridėta');
@@ -18,9 +18,15 @@ $(function(){
 	var galutine = Number($('.galutine').text());
 	$('.update').click(function(){
 		galutine = 0;
+		var id = $(this).parent().parent().find('.id').text();
 		var kiekis = $(this).parent().find('.inputas').val(); // Kiekis (input reiksme) 
+		if(kiekis == 0){
+			kiekis = 1;
+			$(this).parent().find('.inputas').val(1);
+		}		
 		var kaina = $(this).parent().parent().find('.kaina').text(); // Kaina prekes
 		$(this).parent().parent().find('.is_viso').text(kaina * kiekis); // Atnaujinam is viso dali
+		$.get(address + "/atnaujinti/" + id + "/" + kiekis); // atnaujina prekes kieki
 		$('.is_viso').each(function() {
 			galutine += Number($(this).text());
 		});		
@@ -38,6 +44,21 @@ $(function(){
 		$('.galutine').text(galutine);
 		if($('.galutine').text() == 0){
 			$('.panel-body').empty().html('<div class="alert alert-danger">Krepšelis tuščias</div>');
+			//$('.krepselis').fadeOut();
+			//$('.krepselis').delay(1000).fadeIn().html('<div class="alert alert-danger">Krepšelis tuščias</div>');;
 		}
 	});
+	
+	// Prekes kiekio atnaujinimas is krepselio
+	/*$('.update').click(function(){
+		var id = $(this).parent().parent().find('.id').text();
+		var kiekis = $(this).parent().find('.inputas').val();
+		if(kiekis == 0){
+			kiekis = 1;
+			$(this).parent().find('.inputas').val(1);
+		}
+		alert(kiekis);
+		$.get(address + "/atnaujinti/" + id + "/" + kiekis); // atnaujina prekes kieki
+	});*/
+	
 });

@@ -15,8 +15,19 @@ Route::get('/', 'PrekesController@getIndex');
 Route::get('preke/{slug}', 'PrekesController@getPreke');
 Route::get('kategorija/{slug}', 'PrekesController@getPrekesKategorija');
 Route::get('krepselis', 'KrepselisController@getIndex');
-Route::get('uzsakymas', 'KrepselisController@getUzsakymas');
-Route::post('uzsakymas', 'KrepselisController@postUzsakymas');
+Route::get('kontaktine-informacija', 'KrepselisController@getKontaktineInformacija');
+Route::post('kontaktine-informacija', 'KrepselisController@postKontaktineInformacija');
+Route::get('patvirtinimas/{id}', 'KrepselisController@getPatvirtinimas');
+Route::post('patvirtinimas/{id}', 'KrepselisController@postPatvirtinimas');
+Route::get('uzsakymas/{id}', 'KrepselisController@getUzsakymas');
 Route::get('kontaktai', 'BaseController@getKontaktai');
 Route::get('prideti/{id}', 'KrepselisController@getPridetiPreke');
 Route::get('ismesti/{id}', 'KrepselisController@getIsmestiPreke');
+Route::get('atnaujinti/{id}/{kiekis}', 'KrepselisController@getAtnaujintiKieki');
+
+// Admin
+Route::get('admin', 'Admin\MainController@getIndex');
+Route::resource('admin/kategorijos', 'Admin\KategorijosController');
+Route::resource('admin/prekes', 'Admin\PrekesController');
+Route::resource('admin/uzsakymai', 'Admin\UzsakymaiController');
+Route::get('admin/slug/{string}', 'Admin\MainController@getSlugName');

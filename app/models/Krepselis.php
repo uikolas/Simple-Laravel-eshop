@@ -10,32 +10,57 @@ class Krepselis extends Eloquent {
 	}	
 	
 	// Grazina nario krepselio informacija
+	// $id - Sesijos id
 	public static function krepselioInfo($id){
 		$masyvas = array();
-		$masyvas['kiekis'] = Krepselis::where('user_id', '=', $id)->count();
-		$masyvas['suma'] = Krepselis::krepselioSuma($id);
-		$masyvas['prekes'] = Krepselis::prekesKrepselyje($id);
+		$masyvas['kiekis'] = count($id);
+		$masyvas['suma'] = self::krepselioSuma($id);
+		$masyvas['prekes'] = self::prekesKrepselyje($id);
 		return $masyvas;
 	}
 
 	// Grazina krepselio suma prekiu visu
+	// $id - Sesijos id
 	public static function krepselioSuma($id){
 		$suma = 0;
-		$prekes = Krepselis::where('user_id', '=', $id)->get();
-		foreach($prekes as $krepselis){
-			$suma += $krepselis->preke->kaina;
-		}
+		if($id){
+			foreach($id as $reiksme){
+				$preke = Prekes::find($reiksme['preke']);
+				$suma += $preke->kaina * $reiksme['kiekis'];
+			}
+		} 
 		return $suma;
 	}	
 	
-	// Grazina prekes ID masyve
+	// Grazina uzsisakusio zmogaus prekes ID masyve
+	// $id - Sesijos id
 	public static function prekesKrepselyje($id) {
 		$masyvas = array();
-		$prekes = Krepselis::where('user_id', '=', $id)->get();
-		foreach($prekes as $preke){
-			$masyvas[] = $preke->preke_id;
+		if($id){
+			foreach($id as $reiksme){
+				$masyvas[] = $reiksme['preke'];
+			}
 		}
 		return $masyvas;
 	}	
+	
+	// Grazina prekiu informacija pagal id
+	// $id - Sesijos id
+	public static function prekesUser($id){
+		$masyvas = array();
+		if($id){
+			foreach($id as $reiksme){
+				$preke = Prekes::find($reiksme['preke']);
+				$masyvas[] = array(
+					'id' => 			$preke->id, 
+					'pavadinimas' => 	$preke->pavadinimas,
+					'kaina' => 			$preke->kaina,
+					'slug' => 			$preke->slug,
+					'kiekis' =>			$reiksme['kiekis']
+				);
+			}
+		}
+		return $masyvas;
+	}
 
 }

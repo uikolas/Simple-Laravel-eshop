@@ -9,4 +9,14 @@ class Prekes extends Eloquent {
 		return $this->belongsTo('Kategorijos');
 	}
 	
+	// Validation rules
+	public static $rules = array(
+		'pavadinimas' 	=> 'required', 
+		'slug' 			=> 'required',
+		'aprasymas' 	=> 'required',
+		'kaina' 		=> 'required',
+		'kategorija' 	=> 'required',
+		'kiekis' 		=> 'required',
+	);
+	
 }

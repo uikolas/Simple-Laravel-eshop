@@ -23,21 +23,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo url(); ?>"><img src="<?php echo url(); ?>/public/images/cart.png" alt="" />Pavadinimas</a>
+                <a class="navbar-brand" href="<?php echo url(); ?>"><img src="<?php echo url(); ?>/public/images/cart.png" alt="" />Laravel eshop</a>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo url(); ?>">Pagrindinis</a></li>
-                    <li><a href="<?php echo url(); ?>/krepselis">Krepšelis</a></li>
+                    <li><a href="<?php echo url(); ?>/krepselis"><strong>Krepšelis</strong></a></li>
 					<li><a href="<?php echo url(); ?>/kontaktai">Kontaktai</a></li>
-					<li><a href="<?php echo url(); ?>/nerasta">404 puslapis</a></li>
+					<li><a href="<?php echo url(); ?>/admin">Admin</a></li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
     <div class="container">
+	
+	<div class="alert alert-warning alert-dismissable">
+		<strong>Dėmesio!</strong> Tai yra tikai DEMO svetainė, prekės šiame tinklapyje neįmanoma užsisakyti
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	</div>	

@@ -1,5 +1,4 @@
     </div>
-    <!-- /.container -->
 
     <div class="container">
 
@@ -10,7 +9,6 @@
 		</div>
 
     </div>
-    <!-- /.container -->
 
 </body>
 </html>

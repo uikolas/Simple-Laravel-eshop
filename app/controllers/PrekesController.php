@@ -10,7 +10,7 @@ class PrekesController extends BaseController {
 	public function getIndex(){
 		$this->data['prekes'] = Prekes::orderBy('id', 'DESC')->paginate(9);
 		View::Share('title', 'Prekės');
-		return View::make('puslapiai.pagrindinis', $this->data);
+		return View::make('puslapiai.prekes', $this->data);
 	}
 	
 	// Grazina viena preke
@@ -25,7 +25,7 @@ class PrekesController extends BaseController {
 		$kat = Kategorijos::where('slug', '=', $slug)->firstOrFail();
 		$this->data['prekes'] = Prekes::where('kategorija_id', '=', $kat->id)->orderBy('id', 'DESC')->paginate(9);
 		View::Share('title', $kat->pavadinimas);
-		return View::make('puslapiai.pagrindinis', $this->data);
+		return View::make('puslapiai.prekes', $this->data);
 	}	
 
 }

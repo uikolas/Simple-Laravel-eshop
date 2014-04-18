@@ -1,52 +1,50 @@
 <?php echo View::make('header'); ?>
-
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Užsakymas</h3>
 	</div>
 	<div class="panel-body">
-		<?php if($krepselis['kiekis'] != 0){ ?>
-		<div class="row">
-			<div class="col-xs-12">
-				<ul class="nav nav-pills nav-justified thumbnail">
-					<li class="disabled"><a href="#">
-						<h4 class="list-group-item-heading">Žingsnis 1</h4>
-						<p class="list-group-item-text">Prekių kiekis</p>
-					</a></li>
-					<li class="active"><a href="#">
-						<h4 class="list-group-item-heading">Žingsnis 2</h4>
-						<p class="list-group-item-text">Kontaktinė informacija</p>
-					</a></li>
-					<li class="disabled"><a href="#">
-						<h4 class="list-group-item-heading">Žingsnis 3</h4>
-						<p class="list-group-item-text">Patvirtinimas</p>
-					</a></li>
-				</ul>
-			</div>
-		</div>	
-		<form action="" method="post">
-			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="form-group">
-						<input class="form-control" id="name" name="name" placeholder="Vardas" type="text" required autofocus />
-					</div>
-					<div class="form-group">
-						<input class="form-control" id="name" name="name" placeholder="Pavardė" type="text" required />
-					</div>					
-					<div class="form-group">
-						<input class="form-control" id="email" name="email" placeholder="El. paštas" type="email" required />
-					</div>
-				</div>
-				<div class="col-xs-12 col-md-12 form-group">
-					<button class="btn btn-primary pull-right" type="submit">Siųsti</button>
-				</div>
-			</div>
-		</form>		
-		<?php } else { ?>
-			<div class="alert alert-danger">Krepšelis tuščias</div>
-		<?php } ?>
+		<address>
+			<strong>Kontaktine informacija:</strong><br />
+			Užsakymo numeris: <strong><?php echo $uzsakymas->uzsakymo_nr; ?></strong><br />
+			<?php echo $uzsakymas->vardas; ?><br />
+			<?php echo $uzsakymas->pavarde; ?><br />
+			<?php echo $uzsakymas->email; ?><br />
+			<?php echo $uzsakymas->telefonas; ?><br />
+			<?php echo $uzsakymas->miestas; ?><br />
+			<?php echo $uzsakymas->adresas; ?><br />
+			Apmokėjimas: <?php echo ($uzsakymas->atsiimti == 1) ? 'Bankiniu pavedimu' : 'Atsiimant prekę'; ?><br />
+			Apmokejimo statusas: <?php echo ($uzsakymas->apmoketa == 1) ? '<span class="label label-success">Apmokėta</span>' : '<span class="label label-danger">Neapmokėta</span>'; ?><br />
+		</address>
+		<address>
+			<strong>Užsakytos prekės:</strong><br />
+			<table class="table table-hover">
+				<tr>
+					<th class="id">ID</th>
+					<th class="preke">Prekė</th>
+					<th>Kaina</th>
+					<th>Kiekis</th>
+					<th>Iš viso</th>
+				</tr>
+				<?php foreach($krepselio_prekes as $preke) { ?>
+				<tr>
+					<td class="id"><?php echo $preke->preke_id; ?></td>
+					<td><a href="<?php echo url(); ?>/preke/<?php echo $preke->preke->slug; ?>"><?php echo $preke->preke->pavadinimas; ?></a></td>
+					<td><?php echo $preke->preke->kaina; ?> lt</td>
+					<td>
+						<?php echo $preke->kiekis; ?>
+					</td>
+					<td>
+						<?php echo $preke->preke->kaina * $preke->kiekis; ?>
+					</td>
+				</tr>	
+				<?php } ?>
+				<tr>
+					<td colspan="4"></td>
+					<td><strong><?php echo $uzsakymas->suma; ?></strong> lt</td>
+				</tr>
+			</table>
+		</address>		
 	</div>
 </div> 
-
 <?php echo View::make('footer'); ?>
