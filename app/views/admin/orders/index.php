@@ -20,21 +20,21 @@
 						<th>Apmokėjimas</th>
 						<th>Būsena</th>
 					<tr>
-					<?php foreach($uzsakymai as $uzsakymas){ ?>
+					<?php foreach($orders as $order){ ?>
 					<tr>
-						<td><a href="<?php echo url(); ?>/admin/uzsakymai/<?php echo $uzsakymas->uzsakymo_nr; ?>"><?php echo $uzsakymas->uzsakymo_nr; ?></a></td>
-						<td><?php echo $uzsakymas->vardas; ?> <?php echo $uzsakymas->pavarde; ?></td>
-						<td><?php echo $uzsakymas->email; ?></td>
-						<td><?php echo $uzsakymas->telefonas; ?></td>
-						<td><?php echo $uzsakymas->miestas; ?></td>
-						<td><?php echo $uzsakymas->adresas; ?></td>
-						<td><?php echo ($uzsakymas->atsiimti == 1) ? 'Banku' : 'Atsiimant'; ?></td>
-						<td><?php echo ($uzsakymas->apmoketa == 1) ? '<span class="label label-success">Apmokėta</span>' : '<span class="label label-danger">Neapmokėta</span>'; ?></td>
+						<td><a href="<?php echo url(); ?>/admin/uzsakymai/<?php echo $order->uzsakymo_nr; ?>"><?php echo $order->uzsakymo_nr; ?></a></td>
+						<td><?php echo $order->vardas; ?> <?php echo $order->pavarde; ?></td>
+						<td><?php echo $order->email; ?></td>
+						<td><?php echo $order->telefonas; ?></td>
+						<td><?php echo $order->miestas; ?></td>
+						<td><?php echo $order->adresas; ?></td>
+						<td><?php echo ($order->atsiimti == 1) ? 'Banku' : 'Atsiimant'; ?></td>
+						<td><?php echo ($order->apmoketa == 1) ? '<span class="label label-success">Apmokėta</span>' : '<span class="label label-danger">Neapmokėta</span>'; ?></td>
 					</tr>
 					<?php } ?>
 				</table>
 				<div class="centere">
-				<?php echo $uzsakymai->links(); ?>
+				<?php echo $orders->links(); ?>
 				</div>
 			</div>
 		</div>

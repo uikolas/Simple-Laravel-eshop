@@ -13,15 +13,15 @@
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="info-blokas centre">
-							<h2><?php echo $prekes; ?></h2>
+							<h2><?php echo $items; ?></h2>
 							Prekių
 						</div>
 						<div class="info-blokas centre">
-							<h2><?php echo $kategorijos; ?></h2>
+							<h2><?php echo $categories; ?></h2>
 							Kategorijų
 						</div>	
 						<div class="info-blokas centre">
-							<h2><?php echo $uzsakymai; ?></h2>
+							<h2><?php echo $orders; ?></h2>
 							Naujų užsakymų
 						</div>						
 					</div>

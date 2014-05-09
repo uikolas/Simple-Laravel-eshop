@@ -16,14 +16,14 @@
 						<th>Slug</th>
 						<th class="veiksmai"></th>
 					<tr>
-					<?php foreach($kategorijos as $kategorija){ ?>
+					<?php foreach($categories as $category){ ?>
 					<tr>
-						<td class="centre"><?php echo $kategorija->id; ?></td>
-						<td><?php echo $kategorija->pavadinimas; ?></td>
-						<td><?php echo $kategorija->slug; ?></td>
+						<td class="centre"><?php echo $category->id; ?></td>
+						<td><?php echo $category->pavadinimas; ?></td>
+						<td><?php echo $category->slug; ?></td>
 						<td>
-							<a href="<?php echo url(); ?>/admin/kategorijos/<?php echo $kategorija->id; ?>/edit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Redaguoti</a>
-							<?php echo Form::open(array('method' => 'DELETE', 'route' => array('admin.kategorijos.destroy', $kategorija->id), 'class' => 'pull-right')); ?>
+							<a href="<?php echo url(); ?>/admin/kategorijos/<?php echo $category->id; ?>/edit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Redaguoti</a>
+							<?php echo Form::open(array('method' => 'DELETE', 'route' => array('admin.kategorijos.destroy', $category->id), 'class' => 'pull-right')); ?>
 							<?php echo Form::submit('Ištrinti', array('class' => 'btn btn-danger')); ?>
 							<?php echo Form::close(); ?>
 						</td>

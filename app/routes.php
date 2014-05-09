@@ -11,23 +11,23 @@
 |
 */
 
-Route::get('/', 'PrekesController@getIndex');
-Route::get('preke/{slug}', 'PrekesController@getPreke');
-Route::get('kategorija/{slug}', 'PrekesController@getPrekesKategorija');
-Route::get('krepselis', 'KrepselisController@getIndex');
-Route::get('kontaktine-informacija', 'KrepselisController@getKontaktineInformacija');
-Route::post('kontaktine-informacija', 'KrepselisController@postKontaktineInformacija');
-Route::get('patvirtinimas/{id}', 'KrepselisController@getPatvirtinimas');
-Route::post('patvirtinimas/{id}', 'KrepselisController@postPatvirtinimas');
-Route::get('uzsakymas/{id}', 'KrepselisController@getUzsakymas');
-Route::get('kontaktai', 'BaseController@getKontaktai');
-Route::get('prideti/{id}', 'KrepselisController@getPridetiPreke');
-Route::get('ismesti/{id}', 'KrepselisController@getIsmestiPreke');
-Route::get('atnaujinti/{id}/{kiekis}', 'KrepselisController@getAtnaujintiKieki');
+Route::get('/', 'ItemController@getIndex');
+Route::get('preke/{slug}', 'ItemController@getItem');
+Route::get('kategorija/{slug}', 'ItemController@getItemCategory');
+Route::get('krepselis', 'CartController@getIndex');
+Route::get('kontaktine-informacija', 'CartController@getContactInformation');
+Route::post('kontaktine-informacija', 'CartController@postContactInformation');
+Route::get('patvirtinimas/{id}', 'CartController@getConfirm');
+Route::post('patvirtinimas/{id}', 'CartController@postConfirm');
+Route::get('uzsakymas/{id}', 'CartController@getOrder');
+Route::get('kontaktai', 'BaseController@getContacts');
+Route::get('prideti/{id}', 'CartController@getAddItem');
+Route::get('ismesti/{id}', 'CartController@getRemoveItem');
+Route::get('atnaujinti/{id}/{kiekis}', 'CartController@getUpdateAmount');
 
 // Admin
 Route::get('admin', 'Admin\MainController@getIndex');
-Route::resource('admin/kategorijos', 'Admin\KategorijosController');
-Route::resource('admin/prekes', 'Admin\PrekesController');
-Route::resource('admin/uzsakymai', 'Admin\UzsakymaiController');
+Route::resource('admin/kategorijos', 'Admin\CategoryController');
+Route::resource('admin/prekes', 'Admin\ItemController');
+Route::resource('admin/uzsakymai', 'Admin\OrderController');
 Route::get('admin/slug/{string}', 'Admin\MainController@getSlugName');

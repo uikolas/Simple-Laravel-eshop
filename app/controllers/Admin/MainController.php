@@ -2,8 +2,6 @@
 
 namespace Admin;
 
-//use Illuminate\Support\Facades\View;
-
 class MainController extends \BaseController {
 
 	public function __construct(){
@@ -11,9 +9,9 @@ class MainController extends \BaseController {
 	}
 
 	public function getIndex(){
-		$this->data['prekes'] = \Prekes::all()->count();
-		$this->data['kategorijos'] = \Kategorijos::all()->count();
-		$this->data['uzsakymai'] = \Uzsakymai::where('apmoketa', '=', '0')->count();
+		$this->data['items'] = \Item::all()->count();
+		$this->data['categories'] = \Category::all()->count();
+		$this->data['orders'] = \Order::where('apmoketa', '=', '0')->count();
 		return \View::make('admin.main', $this->data);
 	}
 

@@ -7,14 +7,14 @@ class BaseController extends Controller {
 	public function __construct(){
 		$this->beforeFilter('csrf', array('on' => array('post', 'delete', 'put')));
 		$this->beforeFilter('ajax', array('on' => array('post', 'delete', 'put')));	
-		View::Share('krepselis', Krepselis::krepselioInfo(Session::get('cart')));
-		View::Share('kategorijos', Kategorijos::all());
+		View::Share('cart', Cart::cartInfo(Session::get('cart')));
+		View::Share('categories', Category::all());
 		View::Share('title', '');
 	}
 
-	public function getKontaktai(){
+	public function getContacts(){
 		View::Share('title', 'Kontaktai');
-		return View::make('puslapiai.kontaktai');
+		return View::make('pages.contact');
 	}
 
 	/**

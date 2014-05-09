@@ -28,17 +28,17 @@
 				<div class="col-xs-12">
 					<address>
 						<strong>Kontaktine informacija:</strong><br />
-						Užsakymo numeris: <strong><?php echo $uzsakymas->uzsakymo_nr; ?></strong><br />
-						<?php echo $uzsakymas->vardas; ?><br />
-						<?php echo $uzsakymas->pavarde; ?><br />
-						<?php echo $uzsakymas->email; ?><br />
-						<?php echo $uzsakymas->telefonas; ?><br />
-						<?php echo $uzsakymas->miestas; ?><br />
-						<?php echo $uzsakymas->adresas; ?><br />
-						Apmokėjimas: <?php echo ($uzsakymas->atsiimti == 1) ? 'Bankiniu pavedimu' : 'Atsiimant prekę'; ?><br />
+						Užsakymo numeris: <strong><?php echo $order->uzsakymo_nr; ?></strong><br />
+						<?php echo $order->vardas; ?><br />
+						<?php echo $order->pavarde; ?><br />
+						<?php echo $order->email; ?><br />
+						<?php echo $order->telefonas; ?><br />
+						<?php echo $order->miestas; ?><br />
+						<?php echo $order->adresas; ?><br />
+						Apmokėjimas: <?php echo ($order->atsiimti == 1) ? 'Bankiniu pavedimu' : 'Atsiimant prekę'; ?><br />
 					</address>		
 					
-					<h4><a href="<?php echo url(); ?>/uzsakymas/<?php echo $uzsakymas->uzsakymo_nr; ?>">Prekės užsakymo informacija galite matyti čia</a></h4>
+					<h4><a href="<?php echo url(); ?>/uzsakymas/<?php echo $order->uzsakymo_nr; ?>">Prekės užsakymo informacija galite matyti čia</a></h4>
 					
 					<div class="center-text">
 						<button class="btn btn-primary btn-lg" type="submit">Patvirtinti ir apmokėti užsakymą</button>

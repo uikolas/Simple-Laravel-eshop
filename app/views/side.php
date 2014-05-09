@@ -5,8 +5,8 @@
 			<div class="panel panel-default">
 				<div class="panel-body center-text">
 					<div class="krepselis">
-						<?php if(Session::has('cart') && $krepselis['kiekis'] > 0){ ?>
-						Prekės: <strong><?php echo $krepselis['kiekis']; ?></strong> už <strong><?php echo $krepselis['suma']; ?></strong> lt
+						<?php if(Session::has('cart') && $cart['amount'] > 0){ ?>
+						Prekės: <strong><?php echo $cart['amount']; ?></strong> už <strong><?php echo $cart['total']; ?></strong> lt
 						<?php } else { ?>
 						Krepšelis tuščias
 						<?php } ?>
@@ -19,8 +19,8 @@
 		<div class="side">
 			<h3>Kategorijos</h3>
 			<div class="list-group">
-				<?php foreach($kategorijos as $kategorija){ ?>
-				<a href="<?php echo url().'/kategorija/'.$kategorija->slug; ?>" class="list-group-item"><?php echo $kategorija->pavadinimas; ?></a>
+				<?php foreach($categories as $categry){ ?>
+				<a href="<?php echo url().'/kategorija/'.$categry->slug; ?>" class="list-group-item"><?php echo $categry->pavadinimas; ?></a>
 				<?php } ?>
 			</div>
 		</div>

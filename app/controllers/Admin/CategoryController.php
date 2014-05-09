@@ -2,15 +2,15 @@
 
 namespace Admin;
 
-class KategorijosController extends \BaseController {
+class CategoryController extends \BaseController {
 
 	public function index(){
-		$this->data['kategorijos'] = \Kategorijos::all();
-		return \View::make('admin.kategorijos.index', $this->data);
+		$this->data['categories'] = \Category::all();
+		return \View::make('admin.categories.index', $this->data);
 	}
 
 	public function create(){
-		return \View::make('admin.kategorijos.create');
+		return \View::make('admin.categories.create');
 	}
 
 	public function store(){
@@ -18,15 +18,14 @@ class KategorijosController extends \BaseController {
 		if ($validator->fails()) {
 			return \Redirect::to('admin/kategorijos/create')->withErrors($validator);
 		} else {
-			//$kategorija = new \Kategorijos;
 			\Session::flash('message', 'Sėkmingai sukurta!');
 			return \Redirect::to('/admin/kategorijos');
 		}		
 	}
 
 	public function edit($id){
-		$this->data['kategorija'] = \Kategorijos::find($id);
-		return \View::make('admin.kategorijos.edit', $this->data);
+		$this->data['category'] = \Category::find($id);
+		return \View::make('admin.categories.edit', $this->data);
 	}
 
 	public function update($id){
@@ -34,14 +33,12 @@ class KategorijosController extends \BaseController {
 		if ($validator->fails()) {
 			return \Redirect::to('admin/kategorijos/'.$id.'/edit')->withErrors($validator);
 		} else {
-			//$kategorija = \Kategorijos::find($id);
 			\Session::flash('message', 'Sėkmingai redaguota!');
 			return \Redirect::to('/admin/kategorijos');
 		}	
 	}
 
 	public function destroy($id){
-		//$kategorija = \Kategorijos::find($id);
 		\Session::flash('message', 'Sėkmingai Išstrinta!');
 		return \Redirect::to('/admin/kategorijos');
 	}

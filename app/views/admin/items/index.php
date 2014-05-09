@@ -20,18 +20,18 @@
 						<th>Kiekis</th>
 						<th class="veiksmai"></th>
 					<tr>
-					<?php foreach($prekes as $preke){ ?>
+					<?php foreach($items as $item){ ?>
 					<tr>
-						<td class="centre"><?php echo $preke->id; ?></td>
-						<td><a href=""><?php echo $preke->pavadinimas; ?></a></td>
-						<td><?php echo str_limit($preke->aprasymas, 40); ?></td>
-						<td><?php echo $preke->kaina; ?> lt</td>
-						<td><?php echo $preke->kategorija->pavadinimas; ?></td>
-						<td><?php echo str_limit($preke->slug, 40); ?></td>
-						<td><?php echo ($preke->kiekis > 0 ? $preke->kiekis : '<span class="text-danger">Nėra</span>'); ?></td>
+						<td class="centre"><?php echo $item->id; ?></td>
+						<td><a href=""><?php echo $item->pavadinimas; ?></a></td>
+						<td><?php echo str_limit($item->aprasymas, 40); ?></td>
+						<td><?php echo $item->kaina; ?> lt</td>
+						<td><?php echo $item->category->pavadinimas; ?></td>
+						<td><?php echo str_limit($item->slug, 40); ?></td>
+						<td><?php echo ($item->kiekis > 0 ? $item->kiekis : '<span class="text-danger">Nėra</span>'); ?></td>
 						<td>
-							<a href="<?php echo url(); ?>/admin/prekes/<?php echo $preke->id; ?>/edit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Redaguoti</a>
-							<?php echo Form::open(array('method' => 'DELETE', 'route' => array('admin.kategorijos.destroy', $preke->id), 'class' => 'pull-right')); ?>
+							<a href="<?php echo url(); ?>/admin/prekes/<?php echo $item->id; ?>/edit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Redaguoti</a>
+							<?php echo Form::open(array('method' => 'DELETE', 'route' => array('admin.kategorijos.destroy', $item->id), 'class' => 'pull-right')); ?>
 							<?php echo Form::submit('Ištrinti', array('class' => 'btn btn-danger')); ?>
 							<?php echo Form::close(); ?>
 						</td>
@@ -39,7 +39,7 @@
 					<?php } ?>
 				</table>
 				<div class="centere">
-				<?php echo $prekes->links(); ?>
+				<?php echo $items->links(); ?>
 				</div>
 			</div>
 		</div>

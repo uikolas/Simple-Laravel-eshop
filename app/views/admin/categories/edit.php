@@ -14,14 +14,14 @@
 				<?php } ?>
 				</div>
 				<?php } ?>
-				<?php echo Form::model($kategorija, array('route' => array('admin.kategorijos.update', $kategorija->id), 'method' => 'PUT')); ?>
+				<?php echo Form::model($category, array('route' => array('admin.kategorijos.update', $category->id), 'method' => 'PUT')); ?>
 					<div class="form-group">
 						<label>Kategorijos pavadinimas</label>
-						<input type="text" name="pavadinimas" id="pavadinimas" class="form-control" value="<?php echo $kategorija->pavadinimas; ?>" />
+						<input type="text" name="pavadinimas" id="pavadinimas" class="form-control" value="<?php echo $category->pavadinimas; ?>" />
 					</div>
 					<div class="form-group">
 						<label>Slug</label>
-						<input type="text" name="slug" id="slug" class="form-control" value="<?php echo $kategorija->slug; ?>" />
+						<input type="text" name="slug" id="slug" class="form-control" value="<?php echo $category->slug; ?>" />
 					</div>					
 					<input type="submit" value="Išsaugoti" class="btn btn-primary" />
 				</form>

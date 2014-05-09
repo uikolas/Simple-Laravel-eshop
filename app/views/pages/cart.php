@@ -4,7 +4,7 @@
 		<h3 class="panel-title">Krepšelis</h3>
 	</div>
 	<div class="panel-body">
-		<?php if(Session::has('cart') && $krepselis['kiekis'] > 0){ ?>
+		<?php if(Session::has('cart') && $cart['amount'] > 0){ ?>
 		<div class="row">
 			<div class="col-xs-12">
 				<ul class="nav nav-pills nav-justified thumbnail">
@@ -31,24 +31,24 @@
 				<th>Kiekis</th>
 				<th>Iš viso</th>
 			</tr>
-			<?php foreach($uzsakymas as $preke) { ?>
+			<?php foreach($order as $order_item) { ?>
 			<tr>
-				<td class="id"><?php echo $preke['id']; ?></td>
-				<td><a href="<?php echo url(); ?>/preke/<?php echo $preke['slug'] ?>"><?php echo $preke['pavadinimas']; ?></a></td>
-				<td><span class="kaina"><?php echo $preke['kaina']; ?></span> lt</td>
+				<td class="id"><?php echo $order_item['id']; ?></td>
+				<td><a href="<?php echo url(); ?>/preke/<?php echo $order_item['slug'] ?>"><?php echo $order_item['name']; ?></a></td>
+				<td><span class="kaina"><?php echo $order_item['price']; ?></span> lt</td>
 				<td>
-					<input type="text" class="input-sm inputas" value="<?php  echo $preke['kiekis']; ?>" /> 
+					<input type="text" class="input-sm inputas" value="<?php  echo $order_item['amount']; ?>" /> 
 					<span class="cursor update"><img src="<?php echo url(); ?>/public/images/update.png" /></span>
 				</td>
 				<td>
-					<span class="is_viso"><?php echo $preke['kaina'] * $preke['kiekis']; ?></span> lt 
+					<span class="is_viso"><?php echo $order_item['price'] * $order_item['amount']; ?></span> lt 
 					<span class="cursor delete"><img src="<?php echo url(); ?>/public/images/cross.png" /></span>
 				</td>
 			</tr>	
 			<?php } ?>
 			<tr>
 				<td colspan="4"></td>
-				<td><strong><span class="galutine"><?php echo $krepselis['suma']; ?></span></strong> lt</td>
+				<td><strong><span class="galutine"><?php echo $cart['total']; ?></span></strong> lt</td>
 			</tr>
 		</table>
 		<hr />

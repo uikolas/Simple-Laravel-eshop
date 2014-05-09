@@ -40,6 +40,6 @@
     <div class="container">
 	
 	<div class="alert alert-warning alert-dismissable">
-		<strong>Dėmesio!</strong> Tai yra tikai DEMO svetainė, prekės šiame tinklapyje neįmanoma užsisakyti
+		<strong>Dėmesio!</strong> Tai yra tiktai DEMO svetainė, prekių šiame tinklapyje užsisakyti neįmanoma
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	</div>	

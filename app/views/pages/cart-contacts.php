@@ -4,7 +4,7 @@
 		<h3 class="panel-title">Užsakymas</h3>
 	</div>
 	<div class="panel-body">
-		<?php if(Session::has('cart') && $krepselis['kiekis'] > 0){ ?>
+		<?php if(Session::has('cart') && $cart['amount'] > 0){ ?>
 		<div class="row">
 			<div class="col-xs-12">
 				<ul class="nav nav-pills nav-justified thumbnail">

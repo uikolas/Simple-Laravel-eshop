@@ -1,12 +1,12 @@
 <?php
 
-class Prekes extends Eloquent {
+class Item extends Eloquent {
 
 	protected $table = 'prekes';
 	public $timestamps = false;
 
-	public function kategorija() {
-		return $this->belongsTo('Kategorijos');
+	public function category() {
+		return $this->belongsTo('Category', 'kategorija_id');
 	}
 	
 	// Validation rules
