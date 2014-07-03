@@ -30,8 +30,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo url(); ?>">Pagrindinis</a></li>
                     <li><a href="<?php echo url(); ?>/krepselis"><strong>Krepšelis</strong></a></li>
-					<li><a href="<?php echo url(); ?>/kontaktai">Kontaktai</a></li>
-					<li><a href="<?php echo url(); ?>/admin">Admin</a></li>
+                    <li><a href="<?php echo url(); ?>/admin">Admin</a></li>
+					<li><a href="https://github.com/uikolas/Simple-Laravel-eshop">GitHub</a></li>
                 </ul>
             </div>
         </div>

@@ -81,18 +81,20 @@ App::down(function()
 
 require app_path().'/filters.php';
 
-//
-App::missing(function($exception){
-	return Response::view('puslapiai.404', array(), 404);
-});
 /*
-App::error(function(ModelNotFoundException $exception){
-	echo"labas";
-	//return Response::view('puslapiai.404', array(), 404);
-});*/
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+|--------------------------------------------------------------------------
+| Handle missing pages
+|--------------------------------------------------------------------------
+|
+| Add styled missing (404) page
+|
+*/
 
-App::error(function(ModelNotFoundException $exception){
-    return Response::view('puslapiai.404');
+App::missing(function($exception){
+	return Response::view('pages.404', array(), 404);
+});
+
+App::error(function(Illuminate\Database\Eloquent\ModelNotFoundException $exception){
+    return Response::view('pages.404');
 });
 

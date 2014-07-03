@@ -2,21 +2,31 @@
 
 namespace Admin;
 
-class MainController extends \BaseController {
+use BaseController;
+use View;
+use Helper;
+use Item, Category, Order;
+
+class MainController extends BaseController {
 
 	public function __construct(){
 		parent::__construct();
 	}
 
+	// Returns admin index
 	public function getIndex(){
-		$this->data['items'] = \Item::all()->count();
-		$this->data['categories'] = \Category::all()->count();
-		$this->data['orders'] = \Order::where('apmoketa', '=', '0')->count();
-		return \View::make('admin.main', $this->data);
+		$items = Item::all()->count();
+		$categories = Category::all()->count();
+		$orders = Order::where('apmoketa', '=', '0')->count();
+		return View::make('admin.main')
+			->with('items', $items)
+			->with('categories', $categories)
+			->with('orders', $orders);
 	}
 
+	// Returns "sluged" name
 	public function getSlugName($string){
-		return \Helper::makeLink($string);
+		return Helper::makeLink($string);
 	}	
 
 }

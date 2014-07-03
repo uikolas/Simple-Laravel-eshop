@@ -6,17 +6,17 @@ class CartController extends BaseController {
 		parent::__construct();
 	}
 
-	// Grazina krepseli
+	// Returns cart
 	public function getIndex(){
+		$order = Cart::itemsUser(Session::get('cart'));
 		View::Share('title', 'Krepšelis');
-		$this->data['order'] = Cart::itemsUser(Session::get('cart'));
-		return View::make('pages.cart', $this->data);
+		return View::make('pages.cart')->with('order', $order);
 	}
 	
-	// Grazina ivedama kontaktine informacija
+	// Returns contact information
 	public function getContactInformation(){
 		View::Share('title', 'Krepšelis');
-		return View::make('pages.cart-contacts', $this->data);
+		return View::make('pages.cart-contacts');
 	}
 	
 	public function postContactInformation(){
@@ -43,12 +43,12 @@ class CartController extends BaseController {
 		}
 	}	
 	
-	// Grazina patvirtinima ir apmokejimo langa
-	// $id - uzsakymo numeris
+	// Returns confirm window
+	// $id - order number
 	public function getConfirm($id){
+		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
 		View::Share('title', 'Užsakymo apmokėjimas ir patvirtinimas');
-		$this->data['order'] = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
-		return View::make('pages.cart-confirm', $this->data);
+		return View::make('pages.cart-confirm')->with('order', $order);
 	}
 
 	public function postConfirm($id){
@@ -56,17 +56,17 @@ class CartController extends BaseController {
 		return Redirect::to('/uzsakymas/'.$order->uzsakymo_nr);
 	}	
 	
-	// Grazina zmogaus uzsisakusio kontaktus ir uzsakytas prekes
-	// $id - uzsakymo numeris
+	// Returns order window with items
+	// $id - order number
 	public function getOrder($id){
+		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
+		$cart_items = Cart::where('user_id', '=', $id)->get();
 		View::Share('title', 'Užsakymas');
-		$this->data['order'] = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
-		$this->data['cart_items'] = Cart::where('user_id', '=', $id)->get();
-		return View::make('pages.order', $this->data);
+		return View::make('pages.order')->with('order', $order)->with('cart_items', $cart_items);
 	}
 	
-	// Prideda preke i krepseli
-	// $id - Prekes id
+	// Add item to cart 
+	// $id - item id
 	public function getAddItem($id){
 		$response = 1;
 		$amount = $total = 0;
@@ -84,8 +84,8 @@ class CartController extends BaseController {
 		));
 	}
 	
-	// Istrina preke is krepselio
-	// $id - Prekes id
+	// Removes items from cart
+	// $id - item id
 	public function getRemoveItem($id){
 		$cart_items = array();
 		foreach(Session::get('cart') as $value){
@@ -103,9 +103,9 @@ class CartController extends BaseController {
 		}		
 	}
 	
-	// Atnaujina prekes kieki
-	// $id - Prekes id
-	// $kiekis - Prekes kiekis
+	// Updates items count in cart
+	// $id - item id
+	// $amount - items amount
 	public function getUpdateAmount($id, $amount){
 		$cart_items = array();
 		foreach(Session::get('cart') as $value){

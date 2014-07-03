@@ -8,10 +8,10 @@ class Order extends Eloquent {
 	
 	// Validation rules
 	public static $rules = array(
-		'vardas' 	=> 'required|between:1,50|alpha', // alpha - tik raides leidziamos
+		'vardas' 	=> 'required|between:1,50|alpha',
 		'pavarde' 	=> 'required|between:1,50|alpha',
 		'email' 	=> 'required|between:1,50|email',
-		'telefonas' => 'required|digits:9', // digits - tik skaiciai leidziami ir turi buti is 9 skaiciu
+		'telefonas' => 'required|digits:9',
 		'miestas' 	=> 'required|between:1,50|alpha',
 		'adresas' 	=> 'required|between:1,50',
 		'atsiimti' 	=> 'required',

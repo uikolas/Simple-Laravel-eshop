@@ -20,7 +20,6 @@ Route::post('kontaktine-informacija', 'CartController@postContactInformation');
 Route::get('patvirtinimas/{id}', 'CartController@getConfirm');
 Route::post('patvirtinimas/{id}', 'CartController@postConfirm');
 Route::get('uzsakymas/{id}', 'CartController@getOrder');
-Route::get('kontaktai', 'BaseController@getContacts');
 Route::get('prideti/{id}', 'CartController@getAddItem');
 Route::get('ismesti/{id}', 'CartController@getRemoveItem');
 Route::get('atnaujinti/{id}/{kiekis}', 'CartController@getUpdateAmount');

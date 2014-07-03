@@ -22,8 +22,7 @@
 				</ul>
 			</div>
 		</div>			
-		<form action="" method="post">
-			<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+		<?php echo Form::open(array('action' => array('CartController@postConfirm', $order->uzsakymo_nr))); ?>
 			<div class="row">
 				<div class="col-xs-12">
 					<address>

@@ -9,4 +9,10 @@ class Category extends Eloquent {
 		return $this->hasMany('Item', 'kategorija_id');
 	}
 
+	// Validation rules
+	public static $rules = array(
+		'pavadinimas' => 'required', 
+		'slug' => 'required'
+	);
+
 }

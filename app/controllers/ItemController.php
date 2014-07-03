@@ -6,26 +6,28 @@ class ItemController extends BaseController {
 		parent::__construct();
 	}
 
-	// Grazina visas prekes su puslapiavimu
+	// Returns all items
 	public function getIndex(){
-		$this->data['items'] = Item::orderBy('id', 'DESC')->paginate(9);
+		$items = Item::orderBy('id', 'DESC')->paginate(9);
 		View::Share('title', 'Prekės');
-		return View::make('pages.items', $this->data);
+		return View::make('pages.items')->with('items', $items);
 	}
 	
-	// Grazina viena preke
+	// Returns one item
+	// $slug - items identifier
 	public function getItem($slug){
-		$this->data['item'] = Item::where('slug', '=', $slug)->firstOrFail();
-		View::Share('title', $this->data['item']['pavadinimas']);
-		return View::make('pages.item', $this->data);
+		$item = Item::where('slug', '=', $slug)->firstOrFail();
+		View::Share('title', $item->pavadinimas);
+		return View::make('pages.item')->with('item', $item);
 	}
 	
-	// Grazina prekes pagal kategorija
+	// Returns items by category
+	// $slug - cetegory identifier
 	public function getItemCategory($slug){
-		$cat = Category::where('slug', '=', $slug)->firstOrFail();
-		$this->data['items'] = Item::where('kategorija_id', '=', $cat->id)->orderBy('id', 'DESC')->paginate(9);
-		View::Share('title', $cat->pavadinimas);
-		return View::make('pages.items', $this->data);
+		$category = Category::where('slug', '=', $slug)->firstOrFail();
+		$items = Item::where('kategorija_id', '=', $category->id)->orderBy('id', 'DESC')->paginate(9);
+		View::Share('title', $category->pavadinimas);
+		return View::make('pages.items')->with('items', $items);
 	}	
 
 }

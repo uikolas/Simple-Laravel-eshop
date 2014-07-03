@@ -9,8 +9,8 @@ class Cart extends Eloquent {
 		return $this->belongsTo('Item', 'id');
 	}	
 	
-	// Grazina nario krepselio informacija
-	// $id - Sesijos id
+	// Returns users cart info
+	// $id - session id
 	public static function cartInfo($id){
 		$cart = array();
 		$cart['amount'] = count($id);
@@ -19,8 +19,8 @@ class Cart extends Eloquent {
 		return $cart;
 	}
 
-	// Grazina krepselio suma prekiu visu
-	// $id - Sesijos id
+	// Returns cart amount of items
+	// $id - session id
 	public static function cartTotal($id){
 		$total = 0;
 		if(!empty($id)){
@@ -32,8 +32,8 @@ class Cart extends Eloquent {
 		return $total;
 	}	
 	
-	// Grazina uzsisakusio zmogaus prekes ID masyve
-	// $id - Sesijos id
+	// Returns user items in array
+	// $id - session id
 	public static function cartItems($id) {
 		$cart_items = array();
 		if(!empty($id)){
@@ -44,8 +44,8 @@ class Cart extends Eloquent {
 		return $cart_items;
 	}	
 	
-	// Grazina prekiu informacija pagal id
-	// $id - Sesijos id
+	// Returns item info by id
+	// $id - Session id
 	public static function itemsUser($id){
 		$cart_items = array();
 		if(!empty($id)){
