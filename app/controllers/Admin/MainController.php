@@ -13,7 +13,11 @@ class MainController extends BaseController {
 		parent::__construct();
 	}
 
-	// Returns admin index
+	/**
+	 * Show admin index
+	 * 
+	 * @return response
+	 */
 	public function getIndex(){
 		$items = Item::all()->count();
 		$categories = Category::all()->count();
@@ -24,7 +28,12 @@ class MainController extends BaseController {
 			->with('orders', $orders);
 	}
 
-	// Returns "sluged" name
+	/**
+	 * Make slug name
+	 * 
+	 * @param string $string 
+	 * @return string
+	 */
 	public function getSlugName($string){
 		return Helper::makeLink($string);
 	}	

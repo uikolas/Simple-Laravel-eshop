@@ -5,12 +5,21 @@ class Cart extends Eloquent {
 	protected $table = 'krepselis';
 	public $timestamps = false;
 	
+	/**
+	 * Relantionship
+	 * 
+	 * @return array
+	 */
 	public function item() {
-		return $this->belongsTo('Item', 'id');
+		return $this->belongsTo('Item', 'preke_id');
 	}	
 	
-	// Returns users cart info
-	// $id - session id
+	/**
+	 * Show cart info
+	 * 
+	 * @param integer $id 
+	 * @return array
+	 */
 	public static function cartInfo($id){
 		$cart = array();
 		$cart['amount'] = count($id);
@@ -19,8 +28,12 @@ class Cart extends Eloquent {
 		return $cart;
 	}
 
-	// Returns cart amount of items
-	// $id - session id
+	/**
+	 * Return cart amount of items
+	 * 
+	 * @param integer $id 
+	 * @return integer
+	 */
 	public static function cartTotal($id){
 		$total = 0;
 		if(!empty($id)){
@@ -32,26 +45,34 @@ class Cart extends Eloquent {
 		return $total;
 	}	
 	
-	// Returns user items in array
-	// $id - session id
+	/**
+	 * Return user items
+	 * 
+	 * @param integer $id 
+	 * @return array
+	 */
 	public static function cartItems($id) {
-		$cart_items = array();
+		$cartItems = array();
 		if(!empty($id)){
 			foreach($id as $value){
-				$cart_items[] = $value['item'];
+				$cartItems[] = $value['item'];
 			}
 		}
-		return $cart_items;
+		return $cartItems;
 	}	
 	
-	// Returns item info by id
-	// $id - Session id
+	/**
+	 * Return item info
+	 * 
+	 * @param integer $id 
+	 * @return array
+	 */
 	public static function itemsUser($id){
-		$cart_items = array();
+		$cartItems = array();
 		if(!empty($id)){
 			foreach($id as $value){
 				$item = Item::find($value['item']);
-				$cart_items[] = array(
+				$cartItems[] = array(
 					'id' => 			$item->id, 
 					'name' => 			$item->pavadinimas,
 					'price' => 			$item->kaina,
@@ -60,7 +81,7 @@ class Cart extends Eloquent {
 				);
 			}
 		}
-		return $cart_items;
+		return $cartItems;
 	}
 
 }

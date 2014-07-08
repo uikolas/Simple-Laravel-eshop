@@ -6,19 +6,32 @@ class CartController extends BaseController {
 		parent::__construct();
 	}
 
-	// Returns cart
+	/**
+	 * Show cart
+	 * 
+	 * @return response
+	 */
 	public function getIndex(){
 		$order = Cart::itemsUser(Session::get('cart'));
 		View::Share('title', 'Krepšelis');
 		return View::make('pages.cart')->with('order', $order);
 	}
 	
-	// Returns contact information
+	/**
+	 * Show contact information
+	 * 
+	 * @return response
+	 */
 	public function getContactInformation(){
 		View::Share('title', 'Krepšelis');
 		return View::make('pages.cart-contacts');
 	}
 	
+	/**
+	 * Post contact information
+	 * 
+	 * @return redirect
+	 */
 	public function postContactInformation(){
 		View::Share('title', 'Krepšelis');
 		$validator = Validator::make(Input::all(), Order::$rules);
@@ -43,34 +56,53 @@ class CartController extends BaseController {
 		}
 	}	
 	
-	// Returns confirm window
-	// $id - order number
+	/**
+	 * Show confirm window
+	 * 
+	 * @param integer $id 
+	 * @return response
+	 */
 	public function getConfirm($id){
 		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
 		View::Share('title', 'Užsakymo apmokėjimas ir patvirtinimas');
 		return View::make('pages.cart-confirm')->with('order', $order);
 	}
 
+	/**
+	 * Post confirm
+	 * 
+	 * @param integer $id 
+	 * @return redirect
+	 */
 	public function postConfirm($id){
 		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
 		return Redirect::to('/uzsakymas/'.$order->uzsakymo_nr);
 	}	
 	
-	// Returns order window with items
-	// $id - order number
+	/**
+	 * Show order window
+	 * 
+	 * @param integer $id 
+	 * @return response
+	 */
 	public function getOrder($id){
 		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
-		$cart_items = Cart::where('user_id', '=', $id)->get();
+		$cartItems = Cart::where('user_id', '=', $id)->get();
 		View::Share('title', 'Užsakymas');
-		return View::make('pages.order')->with('order', $order)->with('cart_items', $cart_items);
+		return View::make('pages.order')->with('order', $order)->with('cartItems', $cartItems);
 	}
 	
-	// Add item to cart 
-	// $id - item id
-	public function getAddItem($id){
+	/**
+	 * Add item to cart
+	 * 
+	 * @param integer $id 
+	 * @return json
+	 */
+	public function addItem($id){
 		$response = 1;
 		$amount = $total = 0;
-		if(in_array($id, Cart::cartItems(Session::get('cart')))) { 
+		$item = Item::find($id);
+		if(in_array($id, Cart::cartItems(Session::get('cart'))) || !$item) { 
 			$response = 0; 
 		} else {
 			Session::push('cart', array('item' => $id, 'amount' => 1));
@@ -84,40 +116,53 @@ class CartController extends BaseController {
 		));
 	}
 	
-	// Removes items from cart
-	// $id - item id
-	public function getRemoveItem($id){
-		$cart_items = array();
-		foreach(Session::get('cart') as $value){
-			if($value['item'] != $id){
-				$cart_items[] = array('item' => $value['item'], 'amount' => $value['amount']);
+	/**
+	 * Update amount of items in cart
+	 * 
+	 * @param integer $id 
+	 * @param integer $amount 
+	 * @return void
+	 */
+	public function updateAmount($id, $amount){
+		$cartItems = array();
+		$item = Item::find($id);
+		if(in_array($id, Cart::cartItems(Session::get('cart'))) && $item) { 
+			foreach(Session::get('cart') as $value){
+				if($amount > 0 && $amount < 99){
+					if($value['item'] == $id){
+						$cartItems[] = array('item' => $value['item'], 'amount' => $amount);
+					} else {
+						$cartItems[] = array('item' => $value['item'], 'amount' => $value['amount']);
+					}
+				} else return Redirect::to('/');
 			}
-		}	
-		if(count($cart_items) > 0){
-			Session::flush();
-			Session::regenerate();
-			Session::put('cart', $cart_items);
-		} else {
-			Session::flush();
-			Session::regenerate();		
-		}		
-	}
-	
-	// Updates items count in cart
-	// $id - item id
-	// $amount - items amount
-	public function getUpdateAmount($id, $amount){
-		$cart_items = array();
-		foreach(Session::get('cart') as $value){
-			if($value['preke'] == $id){
-				$cart_items[] = array('item' => $value['item'], 'amount' => $amount);
-			} else {
-				$cart_items[] = array('item' => $value['item'], 'kiekis' => $value['amount']);
-			}
-		}
+		} else return Redirect::to('/');
 		Session::flush();
 		Session::regenerate();
-		Session::put('cart', $cart_items);		
+		Session::put('cart', $cartItems);		
+	}
+		
+	/**
+	 * Remove item from cart
+	 * 
+	 * @param integer $id 
+	 * @return void
+	 */
+	public function removeItem($id){
+		$cartItems = array();
+		$item = Item::find($id);
+		if(in_array($id, Cart::cartItems(Session::get('cart'))) && $item) { 
+			foreach(Session::get('cart') as $value){
+				if($value['item'] != $id){
+					$cartItems[] = array('item' => $value['item'], 'amount' => $value['amount']);
+				}
+			}	
+		} else return Redirect::to('/');
+		Session::flush();
+		Session::regenerate();
+		if(count($cartItems) > 0){
+			Session::put('cart', $cartItems);
+		}	
 	}
 	
 }

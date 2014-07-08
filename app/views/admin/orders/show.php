@@ -30,7 +30,7 @@
 							<th>Kiekis</th>
 							<th>Iš viso</th>
 						</tr>
-						<?php foreach($order_items as $item) { ?>
+						<?php foreach($orderItems as $item) { ?>
 						<tr>
 							<td class="id"><?php echo $item->preke_id; ?></td>
 							<td><a href="<?php echo url(); ?>/preke/<?php echo $item->item->slug; ?>"><?php echo $item->item->pavadinimas; ?></a></td>

@@ -26,7 +26,7 @@
 					<th>Kiekis</th>
 					<th>Iš viso</th>
 				</tr>
-				<?php foreach($cart_items as $item) { ?>
+				<?php foreach($cartItems as $item) { ?>
 				<tr>
 					<td class="id"><?php echo $item->preke_id; ?></td>
 					<td><a href="<?php echo url(); ?>/preke/<?php echo $item->item->slug; ?>"><?php echo $item->item->pavadinimas; ?></a></td>

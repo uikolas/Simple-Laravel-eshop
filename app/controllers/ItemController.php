@@ -6,26 +6,38 @@ class ItemController extends BaseController {
 		parent::__construct();
 	}
 
-	// Returns all items
+	/**
+	 * Show all items
+	 * 
+	 * @return response
+	 */
 	public function getIndex(){
-		$items = Item::orderBy('id', 'DESC')->paginate(9);
+		$items = Item::with('category')->orderBy('id', 'DESC')->paginate(9);
 		View::Share('title', 'Prekės');
 		return View::make('pages.items')->with('items', $items);
 	}
 	
-	// Returns one item
-	// $slug - items identifier
+	/**
+	 * Show one item
+	 * 
+	 * @param string $slug 
+	 * @return response
+	 */
 	public function getItem($slug){
-		$item = Item::where('slug', '=', $slug)->firstOrFail();
+		$item = Item::with('category')->where('slug', '=', $slug)->firstOrFail();
 		View::Share('title', $item->pavadinimas);
 		return View::make('pages.item')->with('item', $item);
 	}
 	
-	// Returns items by category
-	// $slug - cetegory identifier
+	/**
+	 * Show categorys
+	 * 
+	 * @param string $slug 
+	 * @return response
+	 */
 	public function getItemCategory($slug){
 		$category = Category::where('slug', '=', $slug)->firstOrFail();
-		$items = Item::where('kategorija_id', '=', $category->id)->orderBy('id', 'DESC')->paginate(9);
+		$items = Item::with('category')->where('kategorija_id', '=', $category->id)->orderBy('id', 'DESC')->paginate(9);
 		View::Share('title', $category->pavadinimas);
 		return View::make('pages.items')->with('items', $items);
 	}	

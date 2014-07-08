@@ -6,9 +6,9 @@
 				<div class="panel-body center-text">
 					<div class="krepselis">
 						<?php if(Session::has('cart') && $cart['amount'] > 0){ ?>
-						Prekės: <strong><?php echo $cart['amount']; ?></strong> už <strong><?php echo $cart['total']; ?></strong> lt
+							Prekės: <strong><?php echo $cart['amount']; ?></strong> už <strong><?php echo $cart['total']; ?></strong> lt
 						<?php } else { ?>
-						Krepšelis tuščias
+							Krepšelis tuščias
 						<?php } ?>
 					</div>
 					<hr />
@@ -20,7 +20,7 @@
 			<h3>Kategorijos</h3>
 			<div class="list-group">
 				<?php foreach($categories as $categry){ ?>
-				<a href="<?php echo url().'/kategorija/'.$categry->slug; ?>" class="list-group-item"><?php echo $categry->pavadinimas; ?></a>
+					<a href="<?php echo url().'/kategorija/'.$categry->slug; ?>" class="list-group-item"><?php echo $categry->pavadinimas; ?></a>
 				<?php } ?>
 			</div>
 		</div>

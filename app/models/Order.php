@@ -6,7 +6,9 @@ class Order extends Eloquent {
 	public $timestamps = false;
 	protected $fillable = array('vardas', 'pavarde', 'email', 'telefonas', 'miestas', 'adresas', 'atsiimti');
 	
-	// Validation rules
+	/**
+	 * Validation rules
+	 */
 	public static $rules = array(
 		'vardas' 	=> 'required|between:1,50|alpha',
 		'pavarde' 	=> 'required|between:1,50|alpha',
