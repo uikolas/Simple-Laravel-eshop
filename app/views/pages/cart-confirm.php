@@ -21,8 +21,12 @@
 					</a></li>
 				</ul>
 			</div>
-		</div>			
-		<?php echo Form::open(array('action' => array('CartController@postConfirm', $order->uzsakymo_nr))); ?>
+		</div>		
+		<div class="alert alert-warning alert-dismissable">
+			<strong>Dėmesio!</strong> Paspaudus "Patvirtinti ir apmokėti užsakymą" bus atliktas testinis mokėjimas, pinigai, nebus nuskaičiuoti
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		</div>				
+		<form action="<?php echo WebToPay::PAY_URL; ?>" method="post" class="form-horizontal">
 			<div class="row">
 				<div class="col-xs-12">
 					<address>
@@ -40,6 +44,9 @@
 					<h4><a href="<?php echo url(); ?>/uzsakymas/<?php echo $order->uzsakymo_nr; ?>">Prekės užsakymo informacija galite matyti čia</a></h4>
 					
 					<div class="center-text">
+						<?php foreach ($request as $key => $val): ?>
+							<input type="hidden" name="<?php echo $key ?>" value="<?php echo htmlspecialchars($val); ?>" />
+						<?php endforeach; ?>
 						<button class="btn btn-primary btn-lg" type="submit">Patvirtinti ir apmokėti užsakymą</button>
 					</div>
 				</div>

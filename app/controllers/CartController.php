@@ -54,30 +54,7 @@ class CartController extends BaseController {
 			Session::regenerate();			
 			return Redirect::to('/patvirtinimas/'.$order->uzsakymo_nr);
 		}
-	}	
-	
-	/**
-	 * Show confirm window
-	 * 
-	 * @param integer $id 
-	 * @return response
-	 */
-	public function getConfirm($id){
-		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
-		View::Share('title', 'Užsakymo apmokėjimas ir patvirtinimas');
-		return View::make('pages.cart-confirm')->with('order', $order);
 	}
-
-	/**
-	 * Post confirm
-	 * 
-	 * @param integer $id 
-	 * @return redirect
-	 */
-	public function postConfirm($id){
-		$order = Order::where('uzsakymo_nr', '=', $id)->firstOrFail();
-		return Redirect::to('/uzsakymas/'.$order->uzsakymo_nr);
-	}	
 	
 	/**
 	 * Show order window

@@ -11,6 +11,7 @@
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo url(); ?>/public/js/jquery.numeric.js" type="text/javascript"></script>
 <script src="<?php echo url(); ?>/public/js/main.js" type="text/javascript"></script>
+<meta name="verify-paysera" content="95ae70796f5bab15a0a63b7c188c4b07">
 </head>
 <body>
 

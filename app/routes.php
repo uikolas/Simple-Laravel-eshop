@@ -14,15 +14,19 @@
 Route::get('/', 'ItemController@getIndex');
 Route::get('preke/{slug}', 'ItemController@getItem');
 Route::get('kategorija/{slug}', 'ItemController@getItemCategory');
+
 Route::get('krepselis', 'CartController@getIndex');
 Route::get('kontaktine-informacija', 'CartController@getContactInformation');
 Route::post('kontaktine-informacija', 'CartController@postContactInformation');
-Route::get('patvirtinimas/{id}', 'CartController@getConfirm');
-Route::post('patvirtinimas/{id}', 'CartController@postConfirm');
 Route::get('uzsakymas/{id}', 'CartController@getOrder');
 Route::get('prideti/{id}', 'CartController@addItem');
-Route::get('atnaujinti/{id}/{kiekis}', 'CartController@updateAmount');
+Route::get('atnaujinti/{id}/{amount}', 'CartController@updateAmount');
 Route::get('ismesti/{id}', 'CartController@removeItem');
+
+Route::get('patvirtinimas/{id}', 'PayController@getConfirm');
+Route::get('callback', 'PayController@getCallback');
+Route::get('accept', 'PayController@getAccept');
+Route::get('cancel', 'PayController@getCancel');
 
 // Admin
 Route::get('admin', 'Admin\MainController@getIndex');
